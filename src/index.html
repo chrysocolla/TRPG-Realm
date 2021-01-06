@@ -22,7 +22,7 @@
   <body>
     <div class="wrapper">
       <!-- /////////////////////// Index page \\\\\\\\\\\\\\\\\\\\\\\ -->
-      <div class="m-4 base-index base-panel" x-data x-show="$store.meta.page === 'index'">
+      <div class="m-4 base-index base-panel" x-data x-show="$store.meta.page === 'index'" x-cloak>
         <h1 class="font-serif text-6xl font-bold text-center text-gray-600">
           TRPG
           <span class="font-sans font-normal">🏕</span>
@@ -32,7 +32,7 @@
       <!-- \\\\\\\\\\\\\\\\\\\\\\\ Index page /////////////////////// -->
 
       <!-- /////////////////////// Board page \\\\\\\\\\\\\\\\\\\\\\\ -->
-      <div class="base" x-data="boardPage()" x-show="$store.meta.page !== 'index'">
+      <div class="base" x-data="boardPage()" x-show="$store.meta.page !== 'index'" x-cloak>
         <div class="col-span-3 row-span-7 base-panel base-panel-board">
           <template x-for="col in cols" :key="col">
             <div class="base-panel-board-col">
@@ -42,7 +42,7 @@
                   <div :class="{ 'base-panel-board-col-avatar': true, 'border-indigo-500': $store.game.characters[`${row}-${col}`] === $store.meta.name }" x-show="$store.game.characters[`${row}-${col}`]" @click="selectAvatar($store.game.characters[`${row}-${col}`])">
                     <svg class="w-full h-full" :data-jdenticon-value="$store.game.characters[`${row}-${col}`]"></svg>
                     <div class="absolute top-0 left-0 flex flex-wrap content-center justify-center w-full h-full bg-black bg-opacity-50 rounded-full hover:bg-opacity-40">
-                      <div class="w-4/5 overflow-auto text-xl text-center text-white whitespace-pre-line overflow-ellipsis" x-text="$store.game.characters[`${row}-${col}`]"></div>
+                      <div class="w-4/5 overflow-hidden text-xl text-center text-white whitespace-pre-line overflow-ellipsis" x-text="$store.game.characters[`${row}-${col}`]"></div>
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,6 @@
         </div>
       </div>
       <!-- \\\\\\\\\\\\\\\\\\\\\\\ Modal page /////////////////////// -->
-
     </div>
   </body>
 </html>

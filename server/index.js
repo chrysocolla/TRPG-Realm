@@ -48,14 +48,16 @@ io.on('connection', socket => {
     socket.broadcast.emit('sync', game)
   })
   socket.on('roll', (character, dice) => {
-    trpg.roll(dice, (error, result) => {
-      if (error) {
-        return
-      } else {
-        game.events.push({ character, dice, result })
-        socket.emit('sync', game)
-        socket.broadcast.emit('sync', game)
-      }
-    })
+    try {
+      trpg.roll(dice, (error, result) => {
+        if (error) {
+          return
+        } else {
+          game.events.push({ character, dice, result })
+          socket.emit('sync', game)
+          socket.broadcast.emit('sync', game)
+        }
+      })
+    } catch (error) {() => {}}
   })
 })
