@@ -53,7 +53,7 @@ io.on('connection', socket => {
         if (error) {
           return
         } else {
-          game.events.push({ character, dice, result })
+          game.events.unshift({ character, dice, result })
           socket.emit('sync', game)
           socket.broadcast.emit('sync', game)
         }

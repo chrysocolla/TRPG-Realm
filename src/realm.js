@@ -52,11 +52,13 @@ window.boardPage = () => {
   return {
     cols: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'],
     rows: ['1', '2', '3', '4', '5', '6', '7'],
-    moveAvatar     (to)   { if (Spruce.store('meta').name) socket.emit('move', Spruce.store('meta').name, to) },
-    selectAvatar   (name) { Spruce.store('meta').name = name },
-    addCharacter   ()     { socket.emit('join', Spruce.store('meta').input) },
-    rollDice       ()     { socket.emit('roll', '', Spruce.store('meta').input) },
-    deleteCharacter()     { socket.emit('move', Spruce.store('meta').name, 'delete'); delete Spruce.store('meta').name },
+    events: Spruce.store('game').events,
+    renderEvent     (event) { return `${event.resultString} = ${event.condensedResultString} = ${event.result}` },
+    moveAvatar      (to)    { if (Spruce.store('meta').name) socket.emit('move', Spruce.store('meta').name, to) },
+    selectAvatar    (name)  { Spruce.store('meta').name = name },
+    addCharacter    ()      { socket.emit('join', Spruce.store('meta').input) },
+    rollDice        ()      { socket.emit('roll', '', Spruce.store('meta').input) },
+    deleteCharacter ()      { socket.emit('move', Spruce.store('meta').name, 'delete'); delete Spruce.store('meta').name },
   }
 }
 /* \\\\\\\\\\\\\\\\\\\\\\\ Board page /////////////////////// */

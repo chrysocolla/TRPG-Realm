@@ -62,7 +62,7 @@
     @apply relative w-full h-full font-serif text-xl text-gray-400 border-4 border-gray-400 rounded-full;
   }
 
-  .modal-container {
+  .modal {
     @apply fixed inset-0 z-10 overflow-y-auto;
   }
 

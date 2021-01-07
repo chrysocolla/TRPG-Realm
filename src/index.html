@@ -68,12 +68,18 @@
           </button>
         </div>
         <div class="col-span-1 row-span-5 base-panel"></div>
-        <div class="col-span-1 row-span-3 base-panel"></div>
+        <div class="col-span-1 row-span-3 pt-0 base-panel">
+          <div class="flex flex-col-reverse flex-shrink-0 h-full space-y-2 overflow-auto rounded-xl">
+            <template x-for="event in $store.game.events" :key="event">
+              <div class="p-2 font-serif bg-indigo-700 shadow text-gray-50 rounded-xl" x-text="renderEvent(event.result.rolls[0])"></div>
+            </template>
+          </div>
+        </div>
       </div>
       <!-- \\\\\\\\\\\\\\\\\\\\\\\ Board page /////////////////////// -->
 
       <!-- /////////////////////// Modal page \\\\\\\\\\\\\\\\\\\\\\\ -->
-      <div class="modal-container" x-data="modalPage()" x-show="$store.meta.modal" x-cloak>
+      <div class="modal" x-data="modalPage()" x-show="$store.meta.modal" x-cloak>
         <div class="modal-body">
           <div x-spread="mask" class="modal-mask-container" aria-hidden="true">
             <div class="modal-mask-body"></div>
